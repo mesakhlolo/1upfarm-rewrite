@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Sprout, CalendarCheck, ChevronRight } from "lucide-react";
@@ -13,7 +14,6 @@ import { TaskCard } from "@/components/TaskCard";
 import { EmptyState } from "@/components/EmptyState";
 import { GrowthRing } from "@/components/GrowthRing";
 import { MascotBubble, pickMascotMessage } from "@/components/MascotBubble";
-import { ProductivityChart } from "@/components/ProductivityChart";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useGardenStore, useProductivity, useExpNeed } from "@/store/useGardenStore";
@@ -21,6 +21,15 @@ import { isHpLow, getTier } from "@/lib/gamification";
 import { tasksForDate } from "@/lib/plant-engine";
 import { todayString } from "@/lib/utils";
 import { toast } from "sonner";
+
+// Chart Recharts berat — lazy-load agar halaman terasa instan; chart menyusul.
+const ProductivityChart = dynamic(
+  () => import("@/components/ProductivityChart").then((m) => m.ProductivityChart),
+  {
+    ssr: false,
+    loading: () => <div className="h-44 w-full animate-pulse rounded bg-muted" aria-hidden />,
+  },
+);
 
 export default function AppHomePage() {
   const router = useRouter();
@@ -32,24 +41,8 @@ export default function AppHomePage() {
   const productivity = useProductivity(7);
   const today = todayString();
 
-  if (!currentUser) {
-    return (
-      <div aria-live="polite" className="flex flex-col gap-3">
-        <p className="text-base font-semibold text-muted-foreground">Memuat kebunmu…</p>
-        <div className="flex animate-pulse flex-col gap-3" aria-hidden>
-          {[0, 1, 2].map((i) => (
-            <div key={i} className="flex items-center gap-3 rounded-lg border border-border bg-card p-4">
-              <div className="size-11 rounded-full bg-muted" />
-              <div className="flex-1 space-y-2">
-                <div className="h-4 w-2/3 rounded bg-muted" />
-                <div className="h-3 w-1/3 rounded bg-muted" />
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    );
-  }
+  // Guard login terpusat di app/app/layout.tsx. Setelah hydrate, currentUser sinkron.
+  if (!currentUser) return null;
 
   const hpLow = isHpLow(currentUser.hp);
   const todayTasks = tasksForDate(myTasks, today);

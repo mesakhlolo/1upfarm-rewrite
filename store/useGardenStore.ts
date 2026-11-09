@@ -90,6 +90,8 @@ interface GardenState {
   myPlants: GardenPlant[];
   myTasks: StoredTask[];
   isAuthenticated: boolean;
+  /** true setelah persist selesai rehydrate dari localStorage (bukan diturunkan ke storage). */
+  _hasHydrated: boolean;
 
   /* actions */
   register: (username: string, password: string) => Promise<{ ok: boolean; error?: string }>;
@@ -122,6 +124,7 @@ interface GardenState {
   exportData: () => string;
   importData: (json: string) => { ok: boolean; error?: string };
   hydrateDefaults: () => void;
+  setHasHydrated: (v: boolean) => void;
 }
 
 function uid(): string {
@@ -199,6 +202,11 @@ export const useGardenStore = create<GardenState>()(
         myPlants: [],
         myTasks: [],
         isAuthenticated: false,
+        _hasHydrated: false,
+
+        setHasHydrated: (v) => {
+          set({ _hasHydrated: v });
+        },
 
         hydrateDefaults: () => {
           const state = get();
@@ -702,6 +710,13 @@ export const useGardenStore = create<GardenState>()(
     },
     {
       name: "1upfarm-garden",
+      onRehydrateStorage: (state) => {
+        return () => {
+          // Tandai selesai rehydrate agar layout bisa sinkronkan derived + guard
+          // tanpa loading palsu tiap pindah halaman (hanya boot pertama yang skeleton).
+          state?.setHasHydrated(true);
+        };
+      },
       partialize: (state) => ({
         users: state.users,
         currentUserId: state.currentUserId,

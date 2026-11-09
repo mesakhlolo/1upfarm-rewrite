@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { NAV_ITEMS } from "@/components/layout/BottomNav";
 import { HPBar } from "@/components/HPBar";
@@ -55,8 +56,9 @@ export function SideNav({
             const Icon = item.icon;
             return (
               <li key={item.href}>
-                <a
+                <Link
                   href={item.href}
+                  prefetch={true}
                   aria-current={isActive ? "page" : undefined}
                   className={cn(
                     "flex min-h-11 items-center gap-3 rounded-lg border-l-2 px-3 py-2 text-sm outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring",
@@ -67,7 +69,7 @@ export function SideNav({
                 >
                   <Icon className="size-5 shrink-0" aria-hidden />
                   {item.label}
-                </a>
+                </Link>
               </li>
             );
           })}

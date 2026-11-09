@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+import dynamic from "next/dynamic";
 import { Award, Sprout } from "lucide-react";
 import { LevelBadge } from "@/components/LevelBadge";
 import { HPBar } from "@/components/HPBar";
@@ -9,12 +11,20 @@ import { GoldCounter } from "@/components/GoldCounter";
 import { StreakFlame } from "@/components/StreakFlame";
 import { BadgeCard } from "@/components/BadgeCard";
 import { EmptyState } from "@/components/EmptyState";
-import { ProductivityChart } from "@/components/ProductivityChart";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { BADGES } from "@/data/badges";
 import { useGardenStore, useProductivity, useExpNeed } from "@/store/useGardenStore";
 import { getTier } from "@/lib/gamification";
+
+// Chart Recharts berat — lazy-load agar halaman terasa instan; chart menyusul.
+const ProductivityChart = dynamic(
+  () => import("@/components/ProductivityChart").then((m) => m.ProductivityChart),
+  {
+    ssr: false,
+    loading: () => <div className="h-44 w-full animate-pulse rounded bg-muted" aria-hidden />,
+  },
+);
 
 export default function ProfilePage() {
   const currentUser = useGardenStore((s) => s.currentUser);
@@ -23,9 +33,8 @@ export default function ProfilePage() {
   const monthly = useProductivity(30);
   const [range, setRange] = useState<7 | 30>(7);
 
-  if (!currentUser) {
-    return <p className="text-base font-semibold text-muted-foreground">Memuat kebunmu…</p>;
-  }
+  // Guard login terpusat di app/app/layout.tsx — tanpa loading per halaman.
+  if (!currentUser) return null;
 
   const initial = currentUser.displayName.slice(0, 2).toUpperCase();
   const tier = getTier(currentUser.level);
@@ -100,7 +109,7 @@ export default function ProfilePage() {
           </div>
         )}
         <Button asChild variant="outline" className="min-h-[44px]">
-          <a href="/app/quests">Lihat Quest</a>
+          <Link href="/app/quests">Lihat Quest</Link>
         </Button>
       </section>
     </div>

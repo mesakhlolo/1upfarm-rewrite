@@ -37,9 +37,8 @@ export default function QuestsPage() {
     };
   }, [progress, currentUser]);
 
-  if (!currentUser) {
-    return <p className="text-base font-semibold text-muted-foreground">Memuat kebunmu…</p>;
-  }
+  // Guard login terpusat di app/app/layout.tsx — tanpa loading per halaman.
+  if (!currentUser) return null;
 
   return (
     <div className="flex flex-col gap-6">

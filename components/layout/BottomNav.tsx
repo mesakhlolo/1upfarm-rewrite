@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
 import { BookOpen, Home, ListTodo, Sprout, User } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -36,14 +37,15 @@ export function BottomNav({ activeHref, className }: { activeHref?: string; clas
           if (item.prominent) {
             return (
               <li key={item.href} className="flex flex-col items-center">
-                <a
+                <Link
                   href={item.href}
+                  prefetch={true}
                   aria-label={item.label}
                   aria-current={isActive ? "page" : undefined}
                   className="flex min-h-11 min-w-11 -translate-y-4 flex-col items-center justify-center rounded-full bg-primary-gradient p-3 text-primary-foreground shadow-pop outline-none transition-transform active:scale-95 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 >
                   <Icon className="size-6" aria-hidden />
-                </a>
+                </Link>
                 <span className={cn("pb-1 text-xs", isActive ? "font-extrabold text-primary" : "font-bold text-muted-foreground")}>
                   {item.label}
                 </span>
@@ -52,8 +54,9 @@ export function BottomNav({ activeHref, className }: { activeHref?: string; clas
           }
           return (
             <li key={item.href} className="flex flex-col items-center">
-              <a
+              <Link
                 href={item.href}
+                prefetch={true}
                 aria-current={isActive ? "page" : undefined}
                 className="flex min-h-11 min-w-11 flex-col items-center justify-center gap-0.5 rounded-lg px-1 py-1 outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
@@ -61,7 +64,7 @@ export function BottomNav({ activeHref, className }: { activeHref?: string; clas
                 <span className={cn("text-xs", isActive ? "font-extrabold text-primary" : "font-bold text-muted-foreground")}>
                   {item.label}
                 </span>
-              </a>
+              </Link>
             </li>
           );
         })}

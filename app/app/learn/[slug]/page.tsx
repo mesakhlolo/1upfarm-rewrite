@@ -1,9 +1,17 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BookOpen } from "lucide-react";
-import { getLearnArticle } from "@/data/learn";
+import { getLearnArticle, LEARN_ARTICLES } from "@/data/learn";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+
+// Pre-render semua materi saat build → klik langsung instan dari cache
+// (dulu route dinamis di-render on-demand per klik = terasa loading).
+export function generateStaticParams() {
+  return LEARN_ARTICLES.map((a) => ({ slug: a.slug }));
+}
+
+export const dynamicParams = false;
 
 export default async function LearnDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -43,7 +51,7 @@ export default async function LearnDetailPage({ params }: { params: Promise<{ sl
       </Card>
 
       <Button asChild variant="outline" className="min-h-[44px]">
-        <Link href="/app/learn">Kembali ke Belajar</Link>
+        <Link href="/app/learn" prefetch={true}>Kembali ke Belajar</Link>
       </Button>
     </div>
   );

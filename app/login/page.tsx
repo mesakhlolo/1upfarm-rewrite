@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -89,9 +90,9 @@ export default function LoginPage() {
             </div>
             <p className="text-center text-sm text-muted-foreground">
               Belum punya akun?{" "}
-              <a href="/register" className="font-bold text-primary underline underline-offset-4">
+              <Link href="/register" className="font-bold text-primary underline underline-offset-4">
                 Daftar
-              </a>
+              </Link>
             </p>
           </form>
         </CardContent>

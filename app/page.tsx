@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   AlarmClock,
   ArrowRight,
@@ -107,7 +108,7 @@ export default function Home() {
               Cara kerja
             </a>
             <Button asChild size="lg" className="min-h-[44px] rounded-full px-5 text-base font-extrabold">
-              <a href="/register">{CTA_PRIMARY}</a>
+              <Link href="/register">{CTA_PRIMARY}</Link>
             </Button>
           </nav>
         </div>
@@ -129,10 +130,10 @@ export default function Home() {
             </p>
             <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center">
               <Button asChild size="lg" className="bg-primary-gradient min-h-[44px] w-full rounded-full px-6 text-base font-extrabold text-white shadow-pop sm:w-auto">
-                <a href="/register">
+                <Link href="/register">
                   {CTA_PRIMARY}
                   <ArrowRight className="ml-2 size-5" aria-hidden />
-                </a>
+                </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="min-h-[44px] w-full rounded-full px-6 text-base font-extrabold sm:w-auto">
                 <a href="#cara-kerja">
@@ -259,10 +260,10 @@ export default function Home() {
               Satu misi hari ini, satu langkah lebih dekat ke panen.
             </p>
             <Button asChild size="lg" className="bg-primary-gradient min-h-[44px] rounded-full px-6 text-base font-extrabold text-white shadow-pop">
-              <a href="/register">
+              <Link href="/register">
                 {CTA_PRIMARY}
                 <ArrowRight className="ml-2 size-5" aria-hidden />
-              </a>
+              </Link>
             </Button>
           </div>
         </section>

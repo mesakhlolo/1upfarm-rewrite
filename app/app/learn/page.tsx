@@ -1,5 +1,6 @@
-"use client";
-
+// Server Component: daftar materi statis — tanpa JS/hidrasi, prefetch penuh
+// agar klik langsung instan (dulu "use client" tanpa hooks, jadi chunk JS
+// ikut dimuat sia-sia untuk konten statis).
 import Link from "next/link";
 import { BookOpen, ChevronRight } from "lucide-react";
 import { LEARN_ARTICLES } from "@/data/learn";
@@ -15,7 +16,7 @@ export default function LearnPage() {
 
       <div className="flex flex-col gap-3">
         {LEARN_ARTICLES.map((a) => (
-          <Link key={a.slug} href={`/app/learn/${a.slug}`} className="focus-visible:ring-2 focus-visible:ring-ring rounded-lg">
+          <Link key={a.slug} href={`/app/learn/${a.slug}`} prefetch={true} className="focus-visible:ring-2 focus-visible:ring-ring rounded-lg">
             <Card className="flex flex-row items-center gap-4 rounded-lg p-4 shadow-soft">
               <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-primary-soft text-primary" aria-hidden>
                 <BookOpen className="size-5" />
