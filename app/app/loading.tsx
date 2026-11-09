@@ -1,7 +1,21 @@
-// Loading boundary segmen /app — menampilkan skeleton instan saat navigasi
-// (chunk/RSC dimuat di background), bukan layar freeze. Teks hanya sr-only
-// agar tidak terasa seperti "loading" tiap pindah halaman.
+"use client";
+
+// Loading boundary segmen /app — skeleton hanya muncul jika navigasi >300ms.
+// Navigasi cepat di bawah 300ms tidak menampilkan skeleton sama sekali,
+// sehingga terasa instan seperti Duolingo/Habitica (halaman lama
+// dipertahankan Next sampai chunk baru siap). Teks hanya sr-only.
+import { useEffect, useState } from "react";
+
 export default function AppLoading() {
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setShow(true), 300);
+    return () => clearTimeout(t);
+  }, []);
+
+  if (!show) return null;
+
   return (
     <div aria-live="polite" className="flex flex-col gap-6">
       <span className="sr-only">Memuat…</span>

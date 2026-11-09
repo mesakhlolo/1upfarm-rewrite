@@ -58,7 +58,7 @@ export function BottomNav({ activeHref, className }: { activeHref?: string; clas
                 href={item.href}
                 prefetch={true}
                 aria-current={isActive ? "page" : undefined}
-                className="flex min-h-11 min-w-11 flex-col items-center justify-center gap-0.5 rounded-lg px-1 py-1 outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="flex min-h-11 min-w-11 flex-col items-center justify-center gap-0.5 rounded-lg px-1 py-1 outline-none transition-transform active:scale-95 focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <Icon className={cn("size-5", isActive ? "text-primary" : "text-muted-foreground")} aria-hidden />
                 <span className={cn("text-xs", isActive ? "font-extrabold text-primary" : "font-bold text-muted-foreground")}>

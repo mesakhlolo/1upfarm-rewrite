@@ -3,7 +3,6 @@
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
 import { Sprout, CalendarCheck, ChevronRight } from "lucide-react";
 import { HPBar } from "@/components/HPBar";
 import { XPBar } from "@/components/XPBar";
@@ -150,7 +149,7 @@ export default function AppHomePage() {
             {todoToday.slice(0, 5).map((t) => {
               const type = t.type as "Siram" | "Pupuk" | "Cek hama" | "Pangkas" | "Panen" | "Foto";
               return (
-                <motion.div key={t.id} layout initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
+                <div key={t.id}>
                   <TaskCard
                     title={t.title}
                     type={type}
@@ -161,7 +160,7 @@ export default function AppHomePage() {
                     plantName={t.plantName}
                     onToggle={() => handleToggle(t.id)}
                   />
-                </motion.div>
+                </div>
               );
             })}
             {todayTasks.length > 5 ? (

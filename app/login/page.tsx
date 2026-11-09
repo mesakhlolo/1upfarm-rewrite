@@ -7,12 +7,14 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useGardenStore, DEMO_USERNAME, DEMO_PASSWORD } from "@/store/useGardenStore";
+import { SEED_ACCOUNTS } from "@/lib/seed-accounts";
 import { toast } from "sonner";
 
 export default function LoginPage() {
   const router = useRouter();
   const login = useGardenStore((s) => s.login);
   const loginWithDemo = useGardenStore((s) => s.loginWithDemo);
+  const loginWithSeed = useGardenStore((s) => s.loginWithSeed);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -36,6 +38,19 @@ export default function LoginPage() {
     setError(null);
     setBusy(true);
     const res = await loginWithDemo();
+    setBusy(false);
+    if (!res.ok) {
+      setError(res.error ?? "Ada yang salah. Coba lagi.");
+      return;
+    }
+    toast.success("Selamat datang kembali!");
+    router.replace("/app/home");
+  }
+
+  async function onSeed(id: string) {
+    setError(null);
+    setBusy(true);
+    const res = await loginWithSeed(id);
     setBusy(false);
     if (!res.ok) {
       setError(res.error ?? "Ada yang salah. Coba lagi.");
@@ -87,6 +102,35 @@ export default function LoginPage() {
               >
                 Coba akun demo
               </Button>
+            </div>
+            <div className="rounded-lg bg-muted px-4 py-3">
+              <p className="text-xs font-semibold text-muted-foreground">
+                Akun test lain (pura-pura jadi user) — atau buka{" "}
+                <Link href="/dev-seed" className="font-bold text-primary underline underline-offset-4">
+                  halaman akun test
+                </Link>{" "}
+                untuk penjelasan & mesin waktu.
+              </p>
+              <div className="mt-2 flex flex-col gap-2">
+                {SEED_ACCOUNTS.filter((s) => s.id !== "demo").map((s) => (
+                  <Button
+                    key={s.id}
+                    type="button"
+                    variant="outline"
+                    className="min-h-[44px] w-full justify-between text-left"
+                    disabled={busy}
+                    onClick={() => void onSeed(s.id)}
+                  >
+                    <span className="flex min-w-0 flex-col items-start">
+                      <span className="truncate text-sm font-extrabold text-foreground">{s.title}</span>
+                      <span className="truncate text-xs font-semibold text-muted-foreground">
+                        {s.username} / {s.password}
+                      </span>
+                    </span>
+                    <span className="shrink-0 text-xs font-extrabold text-primary">Masuk →</span>
+                  </Button>
+                ))}
+              </div>
             </div>
             <p className="text-center text-sm text-muted-foreground">
               Belum punya akun?{" "}

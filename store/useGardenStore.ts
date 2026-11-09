@@ -13,7 +13,8 @@ import {
 } from "@/lib/gamification";
 import { currentDayFor, generateTasks, type EngineTask } from "@/lib/plant-engine";
 import { hashPassword } from "@/lib/auth-hash";
-import { todayString, diffDaysStr } from "@/lib/utils";
+import { todayString, diffDaysStr, addDaysStr } from "@/lib/utils";
+import { findSeedAccount, SEED_ACCOUNTS } from "@/lib/seed-accounts";
 
 /* ------------------------------------------------------------------ */
 /* Akun demo (untuk test cepat)                                        */
@@ -97,6 +98,11 @@ interface GardenState {
   register: (username: string, password: string) => Promise<{ ok: boolean; error?: string }>;
   login: (username: string, password: string) => Promise<{ ok: boolean; error?: string }>;
   loginWithDemo: () => Promise<{ ok: boolean; error?: string }>;
+  loginWithSeed: (seedId: string) => Promise<{ ok: boolean; error?: string }>;
+  /** Dev: hapus semua akun seed di katalog (bukan akun register manual lain). */
+  resetTestAccounts: () => void;
+  /** Dev: tuakan tanaman akun saat ini dengan menggeser startedAt + dateStr task ke lampau. */
+  ageCurrentPlants: (days: number) => { ok: boolean };
   logout: () => void;
   addGardenPlant: (
     slug: string,
@@ -271,6 +277,172 @@ export const useGardenStore = create<GardenState>()(
           if (plantsForDemo.length === 0) {
             get().addGardenPlant("selada", "polybag", todayString());
           }
+          return { ok: true };
+        },
+
+        loginWithSeed: async (seedId) => {
+          const seed = findSeedAccount(seedId);
+          if (!seed) return { ok: false, error: "Akun test tidak ditemukan." };
+          const state = get();
+          const existing = state.users.find((u) => normalizeUsername(u.username) === seed.username);
+          if (existing) {
+            const today = todayString();
+            const updated = { ...existing, lastActiveDate: today };
+            const users = state.users.map((u) => (u.id === existing.id ? updated : u));
+            syncDerived({ users, currentUserId: existing.id } as Partial<GardenState>);
+            return { ok: true };
+          }
+
+          const passwordHash = await hashPassword(seed.password);
+          const userId = uid();
+          const now = new Date();
+          const today = todayString(now);
+          const user: StoredUser = {
+            ...defaultUser(userId, seed.username, passwordHash, seed.displayName),
+            level: seed.level,
+            xp: seed.xp,
+            hp: Math.max(0, Math.min(GAME_CONSTANTS.HP_MAX, seed.hp)),
+            gold: seed.gold,
+            streak: seed.streak,
+            streakFreeze: seed.streakFreeze,
+            badges: [...seed.badges],
+            joinedAt: now.toISOString(),
+            lastActiveDate: today,
+            lastCompletedDate: seed.streak > 0 ? today : null,
+            lastRolloverDate: today,
+            totalTasksDone: seed.totalTasksDone,
+            photoCount: seed.photoCount,
+            harvestedCount: seed.harvestedCount,
+            tasksDoneByDate: {},
+          };
+
+          const gardenPlants: GardenPlant[] = [];
+          const allTasks: StoredTask[] = [];
+          const tasksDoneByDate: Record<string, number> = {};
+
+          for (const spec of seed.plants) {
+            const plant = getPlantBySlug(spec.slug);
+            if (!plant) continue;
+            if (!plant.media.includes(spec.media)) continue;
+            const gardenPlantId = uid();
+            const startedAt = addDaysStr(today, -spec.daysAgo);
+            const estimatedHarvest = addDaysStr(startedAt, plant.growDays.max - 1);
+            const rawTasks = generateTasks(plant, gardenPlantId, startedAt);
+            const todayTasks = rawTasks.filter((t) => t.dateStr === today);
+            void todayTasks;
+            const pastTasks = rawTasks.filter((t) => t.dateStr < today);
+            const doneBudget = Math.max(0, spec.pastTasksDone ?? 0);
+            const built: StoredTask[] = rawTasks.map((t, idx) => {
+              const isPast = t.dateStr < today;
+              const pastIdx = pastTasks.findIndex((p) => p.id === t.id);
+              void idx;
+              if (isPast && pastIdx >= 0) {
+                if (pastIdx < doneBudget) {
+                  tasksDoneByDate[t.dateStr] = (tasksDoneByDate[t.dateStr] ?? 0) + 1;
+                  return { ...t, status: "done" as const, completedAt: t.dateStr };
+                }
+                return { ...t, status: "missed" as const };
+              }
+              return { ...t };
+            });
+            const photos: StoredPhoto[] = plant.photoCheckpoints.map((cp, i) =>
+              i < (spec.photosFilled ?? 0)
+                ? { day: cp.day, stage: cp.stage, filled: true, createdAt: now.toISOString() }
+                : { day: cp.day, stage: cp.stage, filled: false },
+            );
+            gardenPlants.push({
+              id: gardenPlantId,
+              plantSlug: plant.slug,
+              plantName: plant.name,
+              emoji: plant.emoji,
+              difficulty: plant.difficulty,
+              media: spec.media,
+              startedAt,
+              estimatedHarvest,
+              growDaysMax: plant.growDays.max,
+              status: spec.status ?? "growing",
+              photos,
+              createdAt: now.toISOString(),
+            });
+            allTasks.push(...built);
+          }
+
+          user.tasksDoneByDate = tasksDoneByDate;
+
+          const users = [...state.users, user];
+          const nextGardenPlants = { ...state.gardenPlants, [userId]: gardenPlants };
+          const nextTasks = { ...state.tasks, [userId]: allTasks };
+          set({
+            users,
+            currentUserId: userId,
+            currentUser: user,
+            gardenPlants: nextGardenPlants,
+            tasks: nextTasks,
+            myPlants: gardenPlants,
+            myTasks: allTasks,
+            isAuthenticated: true,
+          });
+          return { ok: true };
+        },
+
+        resetTestAccounts: () => {
+          const state = get();
+          const usernames = new Set(SEED_ACCOUNTS.map((s) => s.username.toLowerCase()));
+          const users = state.users.filter((u) => !usernames.has(u.username.toLowerCase()));
+          const gardenPlants: Record<string, GardenPlant[]> = {};
+          const tasks: Record<string, StoredTask[]> = {};
+          for (const u of users) {
+            if (state.gardenPlants[u.id]) gardenPlants[u.id] = state.gardenPlants[u.id];
+            if (state.tasks[u.id]) tasks[u.id] = state.tasks[u.id];
+          }
+          const currentUserId = users.some((u) => u.id === state.currentUserId) ? state.currentUserId : null;
+          const currentUser = users.find((u) => u.id === currentUserId) ?? null;
+          set({
+            users,
+            gardenPlants,
+            tasks,
+            currentUserId,
+            currentUser,
+            myPlants: currentUser ? (gardenPlants[currentUser.id] ?? []) : [],
+            myTasks: currentUser ? (tasks[currentUser.id] ?? []) : [],
+            isAuthenticated: !!currentUser,
+          });
+        },
+
+        ageCurrentPlants: (days) => {
+          const state = get();
+          const user = state.currentUser;
+          if (!user || !Number.isFinite(days) || days <= 0) return { ok: false };
+          const shift = Math.floor(days);
+          const myPlants = (state.gardenPlants[user.id] ?? []).map((p) => ({
+            ...p,
+            startedAt: addDaysStr(p.startedAt, -shift),
+            estimatedHarvest: addDaysStr(p.estimatedHarvest, -shift),
+          }));
+          const myTasks = (state.tasks[user.id] ?? []).map((t) => ({
+            ...t,
+            dateStr: addDaysStr(t.dateStr, -shift),
+            completedAt: t.completedAt ? addDaysStr(t.completedAt, -shift) : undefined,
+          }));
+          // tasksDoneByDate ikut digeser agar grafik produktivitas tetap konsisten
+          const nextDoneByDate: Record<string, number> = {};
+          for (const [d, n] of Object.entries(user.tasksDoneByDate)) {
+            nextDoneByDate[addDaysStr(d, -shift)] = (nextDoneByDate[addDaysStr(d, -shift)] ?? 0) + n;
+          }
+          const updatedUser: StoredUser = {
+            ...user,
+            lastActiveDate: todayString(),
+            tasksDoneByDate: nextDoneByDate,
+          };
+          const users = state.users.map((u) => (u.id === user.id ? updatedUser : u));
+          set({
+            users,
+            currentUser: updatedUser,
+            gardenPlants: { ...state.gardenPlants, [user.id]: myPlants },
+            tasks: { ...state.tasks, [user.id]: myTasks },
+            myPlants,
+            myTasks,
+          });
           return { ok: true };
         },
 

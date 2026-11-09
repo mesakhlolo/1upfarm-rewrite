@@ -15,7 +15,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   const currentUser = useGardenStore((s) => s.currentUser);
   const hydrateDefaults = useGardenStore((s) => s.hydrateDefaults);
   const applyDailyRollover = useGardenStore((s) => s.applyDailyRollover);
-  const myPlants = useGardenStore((s) => s.myPlants);
+  const myPlantsCount = useGardenStore((s) => s.myPlants.length);
   const rolledRef = useRef(false);
 
   // Sinkronkan derived state (currentUser/myPlants/myTasks) sekali setelah
@@ -100,7 +100,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <AppShell activeHref={activeHref} stats={stats} greeting={`${greeting} • ${myPlants.length} tanaman`}>
+    <AppShell activeHref={activeHref} stats={stats} greeting={`${greeting} • ${myPlantsCount} tanaman`}>
       {children}
     </AppShell>
   );

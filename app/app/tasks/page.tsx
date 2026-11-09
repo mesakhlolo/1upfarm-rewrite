@@ -2,7 +2,6 @@
 
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { TaskCard } from "@/components/TaskCard";
 import { EmptyState } from "@/components/EmptyState";
@@ -110,7 +109,7 @@ export default function TasksPage() {
                     <h2 className="text-base font-extrabold text-foreground">{plantName}</h2>
                     <div className="flex flex-col gap-3">
                       {tasks.map((t) => (
-                        <motion.div key={t.id} layout initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
+                        <div key={t.id}>
                           <TaskCard
                             title={t.title}
                             type={t.type as "Siram" | "Pupuk" | "Cek hama" | "Pangkas" | "Panen" | "Foto"}
@@ -121,7 +120,7 @@ export default function TasksPage() {
                             plantName={t.plantName}
                             onToggle={() => handleComplete(t)}
                           />
-                        </motion.div>
+                        </div>
                       ))}
                     </div>
                   </section>
@@ -156,7 +155,7 @@ export default function TasksPage() {
             <EmptyState title="Belum ada task yang selesai." />
           ) : (
             allDone.map((t) => (
-              <motion.div key={t.id} layout initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
+              <div key={t.id}>
                 <TaskCard
                   title={t.title}
                   type={t.type as "Siram" | "Pupuk" | "Cek hama" | "Pangkas" | "Panen" | "Foto"}
@@ -167,7 +166,7 @@ export default function TasksPage() {
                   plantName={t.plantName}
                   onToggle={() => handleUndo(t)}
                 />
-              </motion.div>
+              </div>
             ))
           )}
         </TabsContent>

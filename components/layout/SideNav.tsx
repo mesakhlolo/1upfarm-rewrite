@@ -61,7 +61,7 @@ export function SideNav({
                   prefetch={true}
                   aria-current={isActive ? "page" : undefined}
                   className={cn(
-                    "flex min-h-11 items-center gap-3 rounded-lg border-l-2 px-3 py-2 text-sm outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring",
+                    "flex min-h-11 items-center gap-3 rounded-lg border-l-2 px-3 py-2 text-sm outline-none transition-all active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-ring",
                     isActive
                       ? "border-primary bg-primary-soft font-extrabold text-primary"
                       : "border-transparent font-bold text-muted-foreground hover:bg-muted hover:text-foreground",
