@@ -29,7 +29,7 @@ Buka [http://localhost:3000](http://localhost:3000).
 | `npm run build`        | Production build (Webpack)   |
 | `npm run start`        | Jalankan hasil build         |
 | `npm run lint`         | ESLint                       |
-| `npm run typecheck`    | `tsc --noEmit`               |
+| `npm run typecheck`    | Generate tipe Next.js + tsc  |
 | `npm run test`         | Vitest (run sekali)          |
 | `npm run test:watch`   | Vitest watch                 |
 | `npm run format`       | Prettier tulis               |
