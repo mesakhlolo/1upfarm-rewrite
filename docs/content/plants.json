@@ -1,0 +1,1000 @@
+{
+  "version": 1,
+  "notes": "Data siap pakai untuk app. Angka panen = estimasi DARI SEMAI (bukan dari pindah tanam). Bisa beda per varietas, dataran, dan media. Verifikasi: docs/content/cultivation-verification.md",
+  "mediaTypes": [
+    "polybag",
+    "hidroponik"
+  ],
+  "difficultyRewards": {
+    "easy": {
+      "exp": 10,
+      "gold": 5,
+      "hpPenalty": 5
+    },
+    "medium": {
+      "exp": 20,
+      "gold": 10,
+      "hpPenalty": 8
+    },
+    "hard": {
+      "exp": 35,
+      "gold": 18,
+      "hpPenalty": 12
+    }
+  },
+  "plants": [
+    {
+      "slug": "selada",
+      "name": "Selada",
+      "latin": "Lactuca sativa",
+      "emoji": "🥬",
+      "difficulty": "easy",
+      "media": [
+        "polybag",
+        "hidroponik"
+      ],
+      "growDays": {
+        "min": 30,
+        "max": 45
+      },
+      "sunlight": "4–6 jam",
+      "potSize": "20–30 cm",
+      "spacing": "20×20 cm",
+      "ph": "6–7",
+      "phases": [
+        {
+          "id": "semai",
+          "name": "Semai",
+          "startDay": 1,
+          "endDay": 7,
+          "task": "Siapkan media & semai benih",
+          "description": "Tebar benih tipis, tutup tipis, jaga lembap."
+        },
+        {
+          "id": "pindah",
+          "name": "Pindah tanam",
+          "startDay": 8,
+          "endDay": 14,
+          "task": "Pindahkan bibit ke pot",
+          "description": "Bibit 3–4 daun dipindah ke pot/polybag."
+        },
+        {
+          "id": "vegetatif",
+          "name": "Vegetatif",
+          "startDay": 15,
+          "endDay": 25,
+          "task": "Cek kelembapan & hama",
+          "description": "Pupuk susulan, jaga air, cek hama."
+        },
+        {
+          "id": "pembesaran",
+          "name": "Pembesaran",
+          "startDay": 26,
+          "endDay": 35,
+          "task": "Rapikan daun tua",
+          "description": "Daun melebar, jaga kelembapan."
+        },
+        {
+          "id": "panen",
+          "name": "Panen",
+          "startDay": 30,
+          "endDay": 45,
+          "task": "Panen selada",
+          "description": "Panen pagi, potong pangkal."
+        }
+      ],
+      "recurring": [
+        {
+          "type": "water",
+          "label": "Siram",
+          "everyDays": 1,
+          "startDay": 1,
+          "endDay": 45
+        },
+        {
+          "type": "fertilize",
+          "label": "Pupuk",
+          "everyDays": 7,
+          "startDay": 14,
+          "endDay": 35
+        },
+        {
+          "type": "check",
+          "label": "Cek hama",
+          "everyDays": 3,
+          "startDay": 7,
+          "endDay": 45
+        }
+      ],
+      "photoCheckpoints": [
+        {
+          "day": 1,
+          "stage": "Mulai"
+        },
+        {
+          "day": 7,
+          "stage": "Semai"
+        },
+        {
+          "day": 14,
+          "stage": "Pindah tanam"
+        },
+        {
+          "day": 25,
+          "stage": "Daun lebat"
+        },
+        {
+          "day": 35,
+          "stage": "Panen"
+        }
+      ],
+      "tips": [
+        "Jangan tanam terlalu rapat",
+        "Siram pagi",
+        "Hindari genangan"
+      ],
+      "problems": [
+        "Daun pahit (kurang air/panas)",
+        "Busuk akar (drainase buruk)",
+        "Kutu daun"
+      ],
+      "harvestBasis": "dari semai",
+      "confidence": "tinggi",
+      "varietyNotes": [
+        "Grand Rapids 30-40 HST",
+        "Butterhead/Romaine ~40-45 HST",
+        "Hidroponik 30-35 HST"
+      ],
+      "sources": [
+        "Panah Merah - Grand Rapids",
+        "Jurnal selada Unja/UPN"
+      ]
+    },
+    {
+      "slug": "kangkung",
+      "name": "Kangkung Darat",
+      "latin": "Ipomoea reptans",
+      "emoji": "🌿",
+      "difficulty": "easy",
+      "media": [
+        "polybag",
+        "hidroponik"
+      ],
+      "growDays": {
+        "min": 21,
+        "max": 30
+      },
+      "sunlight": "6+ jam",
+      "potSize": "≥20 cm",
+      "spacing": "10–15 cm",
+      "ph": "6–7",
+      "phases": [
+        {
+          "id": "tanam",
+          "name": "Tanam",
+          "startDay": 1,
+          "endDay": 7,
+          "task": "Semai/tanam benih kangkung",
+          "description": "Tebar/ditugal benih, tutup tipis."
+        },
+        {
+          "id": "vegetatif",
+          "name": "Vegetatif",
+          "startDay": 8,
+          "endDay": 20,
+          "task": "Cek pertumbuhan & pupuk",
+          "description": "Pupuk susulan minggu ke-2, jaga air."
+        },
+        {
+          "id": "panen",
+          "name": "Panen",
+          "startDay": 20,
+          "endDay": 30,
+          "task": "Panen kangkung",
+          "description": "Cabut/potong saat tinggi 25–30 cm."
+        }
+      ],
+      "recurring": [
+        {
+          "type": "water",
+          "label": "Siram",
+          "everyDays": 1,
+          "startDay": 1,
+          "endDay": 30
+        },
+        {
+          "type": "fertilize",
+          "label": "Pupuk",
+          "everyDays": 7,
+          "startDay": 14,
+          "endDay": 25
+        },
+        {
+          "type": "check",
+          "label": "Cek hama",
+          "everyDays": 3,
+          "startDay": 5,
+          "endDay": 30
+        }
+      ],
+      "photoCheckpoints": [
+        {
+          "day": 1,
+          "stage": "Mulai"
+        },
+        {
+          "day": 7,
+          "stage": "Tumbuh"
+        },
+        {
+          "day": 20,
+          "stage": "Siap panen"
+        }
+      ],
+      "tips": [
+        "Butuh air banyak",
+        "Panen sebelum berbunga",
+        "Bisa panen ulang jika dipotong"
+      ],
+      "problems": [
+        "Batang kurus",
+        "Ulat"
+      ],
+      "harvestBasis": "dari semai",
+      "confidence": "tinggi",
+      "varietyNotes": [
+        "Bangkok LP-1 21-25 HST",
+        "Serimpi/Rajawali 21-25 HST"
+      ],
+      "sources": [
+        "Panah Merah - Bangkok LP-1",
+        "Kebunindo - kangkung"
+      ]
+    },
+    {
+      "slug": "bayam",
+      "name": "Bayam Cabut",
+      "latin": "Amaranthus",
+      "emoji": "🍃",
+      "difficulty": "easy",
+      "media": [
+        "polybag"
+      ],
+      "growDays": {
+        "min": 20,
+        "max": 30
+      },
+      "sunlight": "5–6 jam",
+      "potSize": "≥20 cm",
+      "spacing": "15–20 cm",
+      "ph": "6–7",
+      "phases": [
+        {
+          "id": "semai",
+          "name": "Semai",
+          "startDay": 1,
+          "endDay": 7,
+          "task": "Semai benih bayam",
+          "description": "Benih tipis, jaga lembap."
+        },
+        {
+          "id": "vegetatif",
+          "name": "Vegetatif",
+          "startDay": 8,
+          "endDay": 20,
+          "task": "Siangi gulma & pupuk",
+          "description": "Bersihkan gulma, pupuk susulan."
+        },
+        {
+          "id": "panen",
+          "name": "Panen",
+          "startDay": 20,
+          "endDay": 30,
+          "task": "Panen bayam",
+          "description": "Cabut saat tinggi cukup."
+        }
+      ],
+      "recurring": [
+        {
+          "type": "water",
+          "label": "Siram",
+          "everyDays": 1,
+          "startDay": 1,
+          "endDay": 30
+        },
+        {
+          "type": "fertilize",
+          "label": "Pupuk",
+          "everyDays": 7,
+          "startDay": 14,
+          "endDay": 25
+        },
+        {
+          "type": "check",
+          "label": "Siangi & cek hama",
+          "everyDays": 3,
+          "startDay": 7,
+          "endDay": 30
+        }
+      ],
+      "photoCheckpoints": [
+        {
+          "day": 1,
+          "stage": "Mulai"
+        },
+        {
+          "day": 7,
+          "stage": "Semai"
+        },
+        {
+          "day": 14,
+          "stage": "Tumbuh"
+        },
+        {
+          "day": 25,
+          "stage": "Siap panen"
+        }
+      ],
+      "tips": [
+        "Jangan terlalu rapat",
+        "Siram pagi/sore",
+        "Penyiangan hari 7–10"
+      ],
+      "problems": [
+        "Tanaman kurus",
+        "Daun menguning (kurang N)",
+        "Kutu"
+      ],
+      "harvestBasis": "dari semai",
+      "confidence": "tinggi",
+      "varietyNotes": [
+        "Giti Hijau/Merah 20-25 HST",
+        "Maestro 25-30 HST"
+      ],
+      "sources": [
+        "BPPSDMP Pertanian",
+        "DPKP Tangerang",
+        "Kebunindo - Maestro"
+      ]
+    },
+    {
+      "slug": "pakcoy",
+      "name": "Pakcoy / Sawi",
+      "latin": "Brassica rapa",
+      "emoji": "🥬",
+      "difficulty": "easy",
+      "media": [
+        "polybag",
+        "hidroponik"
+      ],
+      "growDays": {
+        "min": 25,
+        "max": 45
+      },
+      "sunlight": "5–6 jam",
+      "potSize": "20–25 cm",
+      "spacing": "15–20 cm",
+      "ph": "6–7",
+      "phases": [
+        {
+          "id": "semai",
+          "name": "Semai",
+          "startDay": 1,
+          "endDay": 10,
+          "task": "Semai benih pakcoy",
+          "description": "Semai dalam tray/pot kecil."
+        },
+        {
+          "id": "pindah",
+          "name": "Pindah tanam",
+          "startDay": 11,
+          "endDay": 14,
+          "task": "Pindahkan bibit",
+          "description": "Bibit kuat dipindah ke pot."
+        },
+        {
+          "id": "vegetatif",
+          "name": "Vegetatif",
+          "startDay": 15,
+          "endDay": 25,
+          "task": "Pupuk & cek hama",
+          "description": "Pupuk N, jaga air."
+        },
+        {
+          "id": "panen",
+          "name": "Panen",
+          "startDay": 25,
+          "endDay": 45,
+          "task": "Panen pakcoy",
+          "description": "Potong pangkal."
+        }
+      ],
+      "recurring": [
+        {
+          "type": "water",
+          "label": "Siram",
+          "everyDays": 1,
+          "startDay": 1,
+          "endDay": 30
+        },
+        {
+          "type": "fertilize",
+          "label": "Pupuk",
+          "everyDays": 7,
+          "startDay": 14,
+          "endDay": 25
+        },
+        {
+          "type": "check",
+          "label": "Cek hama",
+          "everyDays": 3,
+          "startDay": 7,
+          "endDay": 30
+        }
+      ],
+      "photoCheckpoints": [
+        {
+          "day": 1,
+          "stage": "Mulai"
+        },
+        {
+          "day": 10,
+          "stage": "Semai"
+        },
+        {
+          "day": 20,
+          "stage": "Tumbuh"
+        },
+        {
+          "day": 28,
+          "stage": "Siap panen"
+        }
+      ],
+      "tips": [
+        "Suka air cukup & sinar",
+        "Panen sebelum berbunga",
+        "Jaga dari ulat"
+      ],
+      "problems": [
+        "Ulat daun",
+        "Bolting (kepanasan)",
+        "Daun kuning"
+      ],
+      "harvestBasis": "dari pindah tanam (hidroponik) hingga semai (tanah)",
+      "confidence": "sedang",
+      "varietyNotes": [
+        "Nauli F1 25-27 HST (hidroponik/pindah tanam)",
+        "Konvensional 40-50 HST",
+        "25 hari hanya realistis untuk hidroponik"
+      ],
+      "sources": [
+        "Deskripsi varietas Nauli F1",
+        "Dinas Pertanian Kota Yogyakarta"
+      ]
+    },
+    {
+      "slug": "bawang-merah",
+      "name": "Bawang Merah",
+      "latin": "Allium cepa var. ascalonicum",
+      "emoji": "🧅",
+      "difficulty": "medium",
+      "media": [
+        "polybag"
+      ],
+      "growDays": {
+        "min": 57,
+        "max": 70
+      },
+      "sunlight": "6+ jam",
+      "potSize": "20–25 cm",
+      "spacing": "10×10 cm",
+      "ph": "6–7",
+      "phases": [
+        {
+          "id": "tanam",
+          "name": "Tanam umbi",
+          "startDay": 1,
+          "endDay": 10,
+          "task": "Tanam umbi bawang",
+          "description": "Pilih umbi sehat, potong ujung, tanam."
+        },
+        {
+          "id": "vegetatif",
+          "name": "Vegetatif",
+          "startDay": 11,
+          "endDay": 35,
+          "task": "Pupuk & cek daun",
+          "description": "Pupuk rutin, jaga kelembapan."
+        },
+        {
+          "id": "umbi",
+          "name": "Pembentukan umbi",
+          "startDay": 36,
+          "endDay": 55,
+          "task": "Kurangi air, cek umbi",
+          "description": "Kurangi air mendekati panen."
+        },
+        {
+          "id": "panen",
+          "name": "Panen",
+          "startDay": 55,
+          "endDay": 70,
+          "task": "Panen & jemur",
+          "description": "Daun menguning, panen & keringkan."
+        }
+      ],
+      "recurring": [
+        {
+          "type": "water",
+          "label": "Siram",
+          "everyDays": 2,
+          "startDay": 1,
+          "endDay": 55
+        },
+        {
+          "type": "fertilize",
+          "label": "Pupuk",
+          "everyDays": 7,
+          "startDay": 7,
+          "endDay": 42
+        },
+        {
+          "type": "check",
+          "label": "Cek hama",
+          "everyDays": 3,
+          "startDay": 7,
+          "endDay": 60
+        }
+      ],
+      "photoCheckpoints": [
+        {
+          "day": 1,
+          "stage": "Mulai"
+        },
+        {
+          "day": 10,
+          "stage": "Tumbuh"
+        },
+        {
+          "day": 30,
+          "stage": "Vegetatif"
+        },
+        {
+          "day": 55,
+          "stage": "Siap panen"
+        }
+      ],
+      "tips": [
+        "Media gembur",
+        "Jangan berlebihan air",
+        "Kurangi air sebelum panen"
+      ],
+      "problems": [
+        "Umbi busuk",
+        "Daun pucat",
+        "Thrips"
+      ],
+      "harvestBasis": "dari tanam umbi",
+      "confidence": "tinggi",
+      "varietyNotes": [
+        "Bima Brebes ~60 HST",
+        "Maja Cipanas 57-60 HST",
+        "Kurangi air 1-2 hari sebelum panen"
+      ],
+      "sources": [
+        "Juknis Bawang Merah Kementan",
+        "AGROSWAMP - Bima Brebes",
+        "Jurnal UB"
+      ]
+    },
+    {
+      "slug": "daun-bawang",
+      "name": "Daun Bawang",
+      "latin": "Allium fistulosum",
+      "emoji": "🧄",
+      "difficulty": "medium",
+      "media": [
+        "polybag"
+      ],
+      "growDays": {
+        "min": 60,
+        "max": 90
+      },
+      "sunlight": "5–6 jam",
+      "potSize": "≥20 cm",
+      "spacing": "10×10 cm",
+      "ph": "6.5–7.5",
+      "phases": [
+        {
+          "id": "tanam",
+          "name": "Tanam",
+          "startDay": 1,
+          "endDay": 14,
+          "task": "Tanam bibit daun bawang",
+          "description": "Tanam bibit/umbi, siram tiap hari."
+        },
+        {
+          "id": "pertumbuhan",
+          "name": "Pertumbuhan",
+          "startDay": 15,
+          "endDay": 45,
+          "task": "Pupuk & cek pertumbuhan",
+          "description": "Pupuk kompos minggu ke-4."
+        },
+        {
+          "id": "pemeliharaan",
+          "name": "Pemeliharaan",
+          "startDay": 46,
+          "endDay": 60,
+          "task": "Petik daun luar",
+          "description": "Bisa mulai petik daun luar."
+        },
+        {
+          "id": "panen",
+          "name": "Panen",
+          "startDay": 60,
+          "endDay": 90,
+          "task": "Panen daun bawang",
+          "description": "Panen bertahap."
+        }
+      ],
+      "recurring": [
+        {
+          "type": "water",
+          "label": "Siram",
+          "everyDays": 1,
+          "startDay": 1,
+          "endDay": 30
+        },
+        {
+          "type": "water",
+          "label": "Siram",
+          "everyDays": 2,
+          "startDay": 31,
+          "endDay": 90
+        },
+        {
+          "type": "fertilize",
+          "label": "Pupuk",
+          "everyDays": 14,
+          "startDay": 28,
+          "endDay": 70
+        },
+        {
+          "type": "check",
+          "label": "Cek hama",
+          "everyDays": 3,
+          "startDay": 7,
+          "endDay": 90
+        }
+      ],
+      "photoCheckpoints": [
+        {
+          "day": 1,
+          "stage": "Mulai"
+        },
+        {
+          "day": 14,
+          "stage": "Tumbuh"
+        },
+        {
+          "day": 30,
+          "stage": "Vegetatif"
+        },
+        {
+          "day": 60,
+          "stage": "Panen"
+        }
+      ],
+      "tips": [
+        "Petik daun luar agar panen berulang",
+        "Sisakan pangkal",
+        "Jangan becek"
+      ],
+      "problems": [
+        "Daun menguning",
+        "Busuk pangkal"
+      ],
+      "harvestBasis": "dari semai (petik daun 45+)",
+      "confidence": "sedang",
+      "varietyNotes": [
+        "Petik daun luar 45+ HST",
+        "Panen penuh 90-100 HST (SOP)"
+      ],
+      "sources": [
+        "SOP Budidaya Bawang Daun (ppid.pertanian.go.id)"
+      ]
+    },
+    {
+      "slug": "tomat",
+      "name": "Tomat",
+      "latin": "Solanum lycopersicum",
+      "emoji": "🍅",
+      "difficulty": "hard",
+      "media": [
+        "polybag"
+      ],
+      "growDays": {
+        "min": 90,
+        "max": 120
+      },
+      "sunlight": "6–8 jam",
+      "potSize": "30–40 cm",
+      "spacing": "40–50 cm",
+      "ph": "6–7",
+      "phases": [
+        {
+          "id": "semai",
+          "name": "Semai",
+          "startDay": 1,
+          "endDay": 21,
+          "task": "Semai benih tomat",
+          "description": "Semai, jaga lembap & hangat."
+        },
+        {
+          "id": "pindah",
+          "name": "Pindah tanam",
+          "startDay": 22,
+          "endDay": 35,
+          "task": "Pindah tanam & pasang ajir",
+          "description": "Bibit 4–5 daun, pindah + ajir."
+        },
+        {
+          "id": "vegetatif",
+          "name": "Vegetatif",
+          "startDay": 36,
+          "endDay": 55,
+          "task": "Pangkas tunas & pupuk",
+          "description": "Pupuk N, pangkas tunas air bawah."
+        },
+        {
+          "id": "berbunga",
+          "name": "Berbunga",
+          "startDay": 56,
+          "endDay": 75,
+          "task": "Cek bunga & pupuk K",
+          "description": "Pupuk K, bantu penyerbukan."
+        },
+        {
+          "id": "berbuah",
+          "name": "Berbuah",
+          "startDay": 76,
+          "endDay": 90,
+          "task": "Cek buah & hama",
+          "description": "Jaga air, cek hama buah."
+        },
+        {
+          "id": "panen",
+          "name": "Panen",
+          "startDay": 90,
+          "endDay": 120,
+          "task": "Panen tomat",
+          "description": "Panen 3–5 hari sekali."
+        }
+      ],
+      "recurring": [
+        {
+          "type": "water",
+          "label": "Siram",
+          "everyDays": 1,
+          "startDay": 22,
+          "endDay": 120
+        },
+        {
+          "type": "fertilize",
+          "label": "Pupuk",
+          "everyDays": 14,
+          "startDay": 35,
+          "endDay": 100
+        },
+        {
+          "type": "prune",
+          "label": "Pangkas tunas",
+          "everyDays": 7,
+          "startDay": 35,
+          "endDay": 90
+        },
+        {
+          "type": "check",
+          "label": "Cek hama",
+          "everyDays": 3,
+          "startDay": 21,
+          "endDay": 120
+        }
+      ],
+      "photoCheckpoints": [
+        {
+          "day": 1,
+          "stage": "Mulai"
+        },
+        {
+          "day": 21,
+          "stage": "Semai"
+        },
+        {
+          "day": 35,
+          "stage": "Pindah tanam"
+        },
+        {
+          "day": 55,
+          "stage": "Berbunga"
+        },
+        {
+          "day": 75,
+          "stage": "Berbuah"
+        },
+        {
+          "day": 90,
+          "stage": "Panen"
+        }
+      ],
+      "tips": [
+        "Sinar penuh",
+        "Ajir sejak dini",
+        "Jangan siram daun"
+      ],
+      "problems": [
+        "Busuk buah (kalsium/air tak stabil)",
+        "Kutu kebul",
+        "Layu"
+      ],
+      "harvestBasis": "dari semai (varietas menyebut HST dari pindah tanam)",
+      "confidence": "tinggi",
+      "varietyNotes": [
+        "Servo F1 60-65 HST dari pindah tanam (dataran rendah)",
+        "Dataran tinggi 85-90 HST dari pindah tanam",
+        "Dari semai tambah ~21-28 hari"
+      ],
+      "sources": [
+        "Panah Merah - Servo F1",
+        "BBPP Lembang (Kementan)"
+      ]
+    },
+    {
+      "slug": "cabai-rawit",
+      "name": "Cabai Rawit",
+      "latin": "Capsicum frutescens",
+      "emoji": "🌶️",
+      "difficulty": "hard",
+      "media": [
+        "polybag"
+      ],
+      "growDays": {
+        "min": 90,
+        "max": 115
+      },
+      "sunlight": "6–8 jam",
+      "potSize": "30–40 cm",
+      "spacing": "40–50 cm",
+      "ph": "6–7",
+      "phases": [
+        {
+          "id": "semai",
+          "name": "Semai",
+          "startDay": 1,
+          "endDay": 21,
+          "task": "Semai benih cabai",
+          "description": "Rendam benih 1–2 jam (opsional), semai."
+        },
+        {
+          "id": "pindah",
+          "name": "Pindah tanam",
+          "startDay": 22,
+          "endDay": 35,
+          "task": "Pindah tanam bibit",
+          "description": "Bibit 4–5 daun dipindah."
+        },
+        {
+          "id": "vegetatif",
+          "name": "Vegetatif",
+          "startDay": 36,
+          "endDay": 60,
+          "task": "Pangkas & pupuk",
+          "description": "Pupuk N, pangkas tunas samping."
+        },
+        {
+          "id": "berbunga",
+          "name": "Berbunga",
+          "startDay": 61,
+          "endDay": 80,
+          "task": "Cek bunga & pupuk K",
+          "description": "Pupuk K, jaga air."
+        },
+        {
+          "id": "berbuah",
+          "name": "Berbuah",
+          "startDay": 81,
+          "endDay": 100,
+          "task": "Cek buah & hama",
+          "description": "Cek hama, jaga nutrisi."
+        },
+        {
+          "id": "panen",
+          "name": "Panen",
+          "startDay": 100,
+          "endDay": 115,
+          "task": "Panen cabai",
+          "description": "Panen 2–3 hari sekali."
+        }
+      ],
+      "recurring": [
+        {
+          "type": "water",
+          "label": "Siram",
+          "everyDays": 1,
+          "startDay": 22,
+          "endDay": 115
+        },
+        {
+          "type": "fertilize",
+          "label": "Pupuk",
+          "everyDays": 14,
+          "startDay": 35,
+          "endDay": 100
+        },
+        {
+          "type": "prune",
+          "label": "Pangkas tunas",
+          "everyDays": 7,
+          "startDay": 35,
+          "endDay": 90
+        },
+        {
+          "type": "check",
+          "label": "Cek hama",
+          "everyDays": 3,
+          "startDay": 21,
+          "endDay": 115
+        }
+      ],
+      "photoCheckpoints": [
+        {
+          "day": 1,
+          "stage": "Mulai"
+        },
+        {
+          "day": 21,
+          "stage": "Semai"
+        },
+        {
+          "day": 35,
+          "stage": "Pindah tanam"
+        },
+        {
+          "day": 60,
+          "stage": "Vegetatif"
+        },
+        {
+          "day": 80,
+          "stage": "Berbunga"
+        },
+        {
+          "day": 100,
+          "stage": "Panen"
+        }
+      ],
+      "tips": [
+        "Sinar penuh",
+        "Jangan overwater",
+        "Panen rutin agar terus berbuah"
+      ],
+      "problems": [
+        "Rontok bunga",
+        "Keriting daun (thrips)",
+        "Busuk akar"
+      ],
+      "harvestBasis": "dari semai (varietas menyebut HST dari pindah tanam)",
+      "confidence": "sedang",
+      "varietyNotes": [
+        "Dewata 43 F1 ~68 HST dari pindah tanam",
+        "Hiyung 100-115 HST",
+        "Dari semai tambah ~21-35 hari"
+      ],
+      "sources": [
+        "SOP Cabai Rawit Hiyung (Kementan)",
+        "Skripsi UIN Suska - Dewata"
+      ]
+    }
+  ],
+  "harvestBasisNote": "Semua growDays dihitung dari semai/benih. Sumber yang menyebut \"HST\" sering menghitung dari pindah tanam; jangan dibandingkan langsung."
+}

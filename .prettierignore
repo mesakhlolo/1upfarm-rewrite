@@ -1,0 +1,10 @@
+node_modules
+.next
+out
+build
+coverage
+docs
+AGENTS.md
+public
+package-lock.json
+next-env.d.ts
