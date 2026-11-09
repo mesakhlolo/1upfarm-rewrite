@@ -107,7 +107,7 @@ export default function Home() {
               Cara kerja
             </a>
             <Button asChild size="lg" className="min-h-[44px] rounded-full px-5 text-base font-extrabold">
-              <a href="#cara-kerja">{CTA_PRIMARY}</a>
+              <a href="/register">{CTA_PRIMARY}</a>
             </Button>
           </nav>
         </div>
@@ -129,7 +129,7 @@ export default function Home() {
             </p>
             <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center">
               <Button asChild size="lg" className="bg-primary-gradient min-h-[44px] w-full rounded-full px-6 text-base font-extrabold text-white shadow-pop sm:w-auto">
-                <a href="#cara-kerja">
+                <a href="/register">
                   {CTA_PRIMARY}
                   <ArrowRight className="ml-2 size-5" aria-hidden />
                 </a>
@@ -259,7 +259,7 @@ export default function Home() {
               Satu misi hari ini, satu langkah lebih dekat ke panen.
             </p>
             <Button asChild size="lg" className="bg-primary-gradient min-h-[44px] rounded-full px-6 text-base font-extrabold text-white shadow-pop">
-              <a href="#cara-kerja">
+              <a href="/register">
                 {CTA_PRIMARY}
                 <ArrowRight className="ml-2 size-5" aria-hidden />
               </a>
