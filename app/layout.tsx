@@ -1,9 +1,15 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Geist } from "next/font/google";
+import { Nunito } from "next/font/google";
 import { cn } from "@/lib/utils";
 
-const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
+// docs/content/design-system.md §3 — Nunito rounded, 400–800
+const nunito = Nunito({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-sans",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "1UpFarm",
@@ -12,7 +18,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="id" className={cn("font-sans", geist.variable)}>
+    <html lang="id" className={cn("font-sans", nunito.variable)}>
       <body>{children}</body>
     </html>
   );
