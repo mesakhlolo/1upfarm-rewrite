@@ -262,7 +262,7 @@ menyebut "HST" tanpa basis, sebut angka panen tanpa "dari semai".
 | localStorage penuh oleh foto | Crash / `QuotaExceededError` | IndexedDB untuk foto, kompresi ≤ 120KB, thumbnail 400px, hapus lama, ekspor foto default off (`photo-checkpoint-spec.md` §4) |
 | Logika tanggal/streak rapuh (DST, zona) | Streak reset salah | Simpan `lastActiveDate` `YYYY-MM-DD` lokal, `applyDailyRollover` idempotent + unit test lompat hari |
 | Scope creep: shop/leaderboard/backend | /goal tertunda | Kunci out-of-scope §0; Fase 13+ terpisah |
-| Build lambat / Turbopack | Verifikasi lama | Tetap `--webpack` (sesuai README), cache `.next`, smoke Playwright di Chromium saja MVP |
+| Build lambat / Turbopack di Windows native (Smart App Control memblokir binary Rust unsigned) | SmartScreen/Smart App Control | Jalankan di WSL2 Linux filesystem (Turbopack `--turbopack`); jangan paksa `--webpack` di WSL. Lihat README § Troubleshooting Windows Smart App Control |
 | Konten tanaman tidak realistis | User gagal tanam | Tampilkan rentang + "estimasi dari semai" + varietas/dataran/media (`cultivation-verification.md` §4), validasi via `user-validation-kit.md` setelah /goal |
 | Font kecil (feedback usability) | A11y gagal | Font dasar ≥ 16px, audit §9 design-system |
 

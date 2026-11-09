@@ -28,6 +28,7 @@
    npm install
    npm run dev
    ```
+
    Buka **http://localhost:3000**
 
 2. Gunakan **Chrome incognito / profil baru** agar bersih dari data lama.
@@ -51,12 +52,12 @@
 - **Sebelumnya tidak ada.** Sekarang sudah dibuatkan akun demo khusus untuk test cepat.
 - kredensialnya:
 
-  | Item | Nilai |
-  |---|---|
-  | **Username** | `demo` |
-  | **Password** | `demo123` |
-  | **Cara masuk** | Di `/login` klik **Coba akun demo** — otomatis buat akunnya, langsung masuk `/app/home` |
-  | **Isi awal** | 1 tanaman **Selada 🥬** (Polybag/Pot, mulai hari ini) + badge **Tunastumbuh** + **+10 EXP** (Level 1, EXP 10/50) |
+  | Item           | Nilai                                                                                                            |
+  | -------------- | ---------------------------------------------------------------------------------------------------------------- |
+  | **Username**   | `demo`                                                                                                           |
+  | **Password**   | `demo123`                                                                                                        |
+  | **Cara masuk** | Di `/login` klik **Coba akun demo** — otomatis buat akunnya, langsung masuk `/app/home`                          |
+  | **Isi awal**   | 1 tanaman **Selada 🥬** (Polybag/Pot, mulai hari ini) + badge **Tunastumbuh** + **+10 EXP** (Level 1, EXP 10/50) |
 
 - Akun demo **dibuat otomatis sekali saja** lalu tersimpan di `localStorage`. Klik **Coba akun demo** berikutnya langsung login tanpa buat baru.
 - Logout → login lagi tetap bisa pakai `demo` / `demo123` manual di form, atau klik tombol demo lagi.
@@ -92,23 +93,23 @@ Ikuti ini dari landing sampai panen. Setiap langkah ada checkbox.
 
 ### A3. Onboarding `/onboarding`
 
-- [ ] Slide 1: **Selamat datang di 1UpFarm** — *Teman berkebun yang bikin kamu konsisten.* Dot progress 1/3. Tombol **Lanjut** + **Lewati**.
-- [ ] Klik **Lanjut** → Slide 2: **Nggak perlu jago dulu** — *Panduan langkah demi langkah buat pemula total.*
-- [ ] Klik **Lanjut** → Slide 3: **Satu tanaman, satu komitmen** — *Kita mulai dari yang paling gampang dan cepat panen.* Tombol terakhir **Pilih Tanaman Pertamaku** + **Lewati**.
+- [ ] Slide 1: **Selamat datang di 1UpFarm** — _Teman berkebun yang bikin kamu konsisten._ Dot progress 1/3. Tombol **Lanjut** + **Lewati**.
+- [ ] Klik **Lanjut** → Slide 2: **Nggak perlu jago dulu** — _Panduan langkah demi langkah buat pemula total._
+- [ ] Klik **Lanjut** → Slide 3: **Satu tanaman, satu komitmen** — _Kita mulai dari yang paling gampang dan cepat panen._ Tombol terakhir **Pilih Tanaman Pertamaku** + **Lewati**.
 - [ ] Klik **Pilih Tanaman Pertamaku** → ke `/app/plants`. (Kalau klik **Lewati** dari slide mana pun → ke `/app/home`).
 
 ### A4. Dashboard awal `/app/home` (kebun kosong)
 
 - [ ] Sapaan **Hai, tifatest!** + maskot bubble (salah satu dari rotasi `ui-copy §17`).
 - [ ] Stat row: HP 100/100, EXP 0/50, Gold 0, Level Lv. 1 (tier Pemula), Streak 0.
-- [ ] Section **Misi hari ini** → **EmptyState**: **Kebunmu masih kosong** — *Pilih tanaman pertamamu dan mulai hari ini.* CTA **Tambah Tanaman**.
+- [ ] Section **Misi hari ini** → **EmptyState**: **Kebunmu masih kosong** — _Pilih tanaman pertamamu dan mulai hari ini._ CTA **Tambah Tanaman**.
 - [ ] Section **Produktivitas** → grafik Recharts 7 hari (semua 0).
 - [ ] Section **Tanaman aktif** → teks **Belum ada tanaman. Mulai dari katalog!**
 - [ ] Refresh halaman → tetap login (persist), tidak balik ke `/register`.
 
 ### A5. Katalog `/app/plants`
 
-- [ ] Judul **Pilih tanamanmu** + sub *Semua angka panen adalah estimasi dari semai.*
+- [ ] Judul **Pilih tanamanmu** + sub _Semua angka panen adalah estimasi dari semai._
 - [ ] Chip filter: **Semua** / **Cepat panen** / **Mudah** / **Menantang**. Klik tiap chip, grid berubah:
   - **Mudah** → Selada, Kangkung Darat, Bayam Cabut, Pakcoy (4)
   - **Menantang** → Tomat, Cabai Rawit (2)
@@ -118,8 +119,8 @@ Ikuti ini dari landing sampai panen. Setiap langkah ada checkbox.
 
 ### A6. Detail tanaman `/app/plants/selada`
 
-- [ ] Header emoji + **Selada** + *Lactuca sativa* + tag media.
-- [ ] Card **Info tanaman**: **Perkiraan panen ±30–45 hari (estimasi dari semai)**, Matahari *4–6 jam*, Ukuran pot *20–30 cm*, Jarak tanam *20×20 cm*, pH *6–7* + catatan *Bisa beda tergantung varietas, dataran, dan media.*
+- [ ] Header emoji + **Selada** + _Lactuca sativa_ + tag media.
+- [ ] Card **Info tanaman**: **Perkiraan panen ±30–45 hari (estimasi dari semai)**, Matahari _4–6 jam_, Ukuran pot _20–30 cm_, Jarak tanam _20×20 cm_, pH _6–7_ + catatan _Bisa beda tergantung varietas, dataran, dan media._
 - [ ] **Tahapan tumbuh** → `StageStepper` 5 fase (Semai hari 1–7, Pindah tanam 8–14, Vegetatif 15–25, Pembesaran 26–35, Panen 30–45).
 - [ ] **Tips penting** (3 tips Selada) + **Kalau bermasalah** (Daun pahit, Busuk akar, Kutu daun).
 - [ ] Klik **Tanam ini** → ke `/app/garden/add?plant=selada` (tanaman sudah terpreselect).
@@ -129,7 +130,7 @@ Ikuti ini dari landing sampai panen. Setiap langkah ada checkbox.
 - [ ] Judul **Tambah tanaman** + stepper 4 langkah: **Pilih tanaman / Pilih media tanam / Kapan mulai? / Ringkasan**.
 - [ ] Step 1 Pilih tanaman: klik **Selada** (ring ungu muncul). Tombol **Lanjut**.
 - [ ] Step 2 **Pilih media tanam**: opsi **Polybag / Pot** & **Hidroponik** (Selada mendukung keduanya). Pilih **Polybag / Pot** → **Lanjut**.
-  - Coba ganti ke tanaman yang hanya polybag (mis. Bayam) → Hidroponik harus disabled + label *(tidak tersedia)*.
+  - Coba ganti ke tanaman yang hanya polybag (mis. Bayam) → Hidroponik harus disabled + label _(tidak tersedia)_.
 - [ ] Step 3 **Kapan mulai?**: radio **Hari ini (tanggal hari ini)** / **Pilih tanggal** + input `date`. Catatan **Kami akan perkirakan tanggal panen.** Pilih **Hari ini** → **Lanjut**.
 - [ ] Step 4 **Ringkasan**: Tanaman Selada 🥬, Media Polybag/Pot, Mulai hari ini, Estimasi panen (hari ini + 44 hari karena Selada max 45), Perkiraan **±30–45 hari (estimasi dari semai)**.
 - [ ] Klik **Mulai Rencana** → toast **Rencana dimulai! Misi hari ke-1 sudah siap. Kamu dapat +10 EXP.** + toast **Badge baru: Tunastumbuh!** → otomatis ke `/app/plan/{id}`.
@@ -138,8 +139,8 @@ Ikuti ini dari landing sampai panen. Setiap langkah ada checkbox.
 
 - [ ] Header Selada + media + **Mulai {tanggal} • Panen {tanggal estimasi}** + **Hari ke-1 dari 45** + `GrowthRing` 2%.
 - [ ] `StageStepper` aktif di fase Semai.
-- [ ] **Bukti tumbuh** → card **Bukti tumbuh** — *Foto tanamanmu di tahap ini.* + tombol **Ambil / Unggah Foto** + **Nanti saja**.
-- [ ] **Rencana hari ke hari** → timeline per tanggal, hari 1 ada 2 task (contoh: *Siapkan media & semai benih* + *Foto bukti tumbuh — Mulai*), tiap task ada pill **+10 EXP** & **+5 gold** karena easy.
+- [ ] **Bukti tumbuh** → card **Bukti tumbuh** — _Foto tanamanmu di tahap ini._ + tombol **Ambil / Unggah Foto** + **Nanti saja**.
+- [ ] **Rencana hari ke hari** → timeline per tanggal, hari 1 ada 2 task (contoh: _Siapkan media & semai benih_ + _Foto bukti tumbuh — Mulai_), tiap task ada pill **+10 EXP** & **+5 gold** karena easy.
 - [ ] Coba upload foto: pilih file image → kompres ≤800px JPEG 0.7 → thumbnail muncul + toast **Keren! +5 HP, +10 EXP.** + badge **Foto Pertama** bila pertama kali. HP naik (maks 100). Tombol **Nanti saja** → card foto hilang tanpa reward.
 
 ### A9. Dashboard setelah tambah `/app/home`
@@ -152,7 +153,7 @@ Ikuti ini dari landing sampai panen. Setiap langkah ada checkbox.
 
 ### A10. To-do `/app/tasks`
 
-- [ ] Judul **To-do** + sub *{n} misi hari ini • {n} selesai*.
+- [ ] Judul **To-do** + sub _{n} misi hari ini • {n} selesai_.
 - [ ] Tab **Task / Done**. Di tab **Task**, task dikelompokkan per tanaman (label **Selada**).
 - [ ] Klik bulat centang pada task pertama → toast **Selesai! +10 EXP, +5 gold.** Task pindah ke **Done**, animasi `framer-motion` muncul. EXP/Gold di header/sidebar naik.
 - [ ] Selesaikan **semua** task hari ini → toast tambahan **Semua misi hari ini selesai. Streak +1 🔥** + banner di halaman + bonus **+10 EXP / +5 gold / +5 HP** (total hari itu, hitung ulang di dashboard). Streak menjadi **1**, HP regen +5 (maks 100).
@@ -162,7 +163,7 @@ Ikuti ini dari landing sampai panen. Setiap langkah ada checkbox.
 ### A11. Quest & Badge `/app/quests`
 
 - [ ] Judul **Quest & Badge** + kartu **Streak kamu: 1 hari** + milestone chip **3 / 7 / 14 / 30 hari** (belum tercapai = abu).
-- [ ] Daftar Quest Daily/Weekly/Plant (5 quest) + progress bar + reward (+EXP/+gold/+HP). Contoh: *Selesaikan semua task hari ini* harusnya 100% setelah A10. *Streak 7 hari* masih rendah.
+- [ ] Daftar Quest Daily/Weekly/Plant (5 quest) + progress bar + reward (+EXP/+gold/+HP). Contoh: _Selesaikan semua task hari ini_ harusnya 100% setelah A10. _Streak 7 hari_ masih rendah.
 - [ ] Section **Koleksi badge** → grid 8 badge: Tunastumbuh terbuka (gradient), lainnya terkunci (abu).
 
 ### A12. Belajar `/app/learn` & `/app/learn/[slug]`
@@ -175,7 +176,7 @@ Ikuti ini dari landing sampai panen. Setiap langkah ada checkbox.
 
 - [ ] Judul **Profil** + avatar inisial (2 huruf) + **tifatest** + `@tifatest` + `LevelBadge` Lv. 1 tier **Pemula**.
 - [ ] Stat full: HP, EXP, Gold, Streak, Rank (tier).
-- [ ] Section **Produktivitas** → toggle **7 hari terakhir / 30 hari terakhir** + `ProductivityChart` + ringkasan *Total misi selesai: {n} • Foto: {n} • Panen: {n}*..
+- [ ] Section **Produktivitas** → toggle **7 hari terakhir / 30 hari terakhir** + `ProductivityChart` + ringkasan _Total misi selesai: {n} • Foto: {n} • Panen: {n}_..
 - [ ] Section **Koleksi badge** → **Tunastumbuh** terbuka. Kalau akun baru belum ada badge sama sekali → **Belum ada badge. Selesaikan misi pertamamu!**
 - [ ] Tombol **Lihat Quest** → ke `/app/quests`.
 
@@ -187,7 +188,7 @@ Ikuti ini dari landing sampai panen. Setiap langkah ada checkbox.
   - **Ekspor data** → download `1upfarm-data-YYYY-MM-DD.json`, toast **Ekspor selesai.**
   - **Impor data** → pilih file JSON hasil ekspor → toast **Impor selesai. Data pulih!** (kalau file rusak → **File tidak bisa dibaca.**)
   - Catatan privasi foto muncul di halaman.
-  - Tombol **Keluar** → dialog **Yakin mau keluar?** / *Progres kebunmu tetap tersimpan di perangkat ini.* → Batal / Keluar.
+  - Tombol **Keluar** → dialog **Yakin mau keluar?** / _Progres kebunmu tetap tersimpan di perangkat ini._ → Batal / Keluar.
 
 ### A15. Logout → login lagi
 
@@ -209,7 +210,7 @@ Ikuti ini dari landing sampai panen. Setiap langkah ada checkbox.
 >
 > 1. Tambah Selada dengan tanggal mulai **45 hari lalu** via wizard step “Pilih tanggal” → `startedAt` = hari ini −44.
 > 2. Buka `/app/plan/{id}` → akan ada card **Siap panen!** + tombol **Panen Sekarang**.
-> 3. Klik **Panen Sekarang** → overlay **PANEN PERTAMA! 🎉** + *Kamu berhasil menanam sampai panen. Luar biasa!* + CTA **Tanam Berikutnya** → ke `/app/plants`. Toast **Badge baru: Panen Pertama!** muncul. Status tanaman jadi **Panen**.
+> 3. Klik **Panen Sekarang** → overlay **PANEN PERTAMA! 🎉** + _Kamu berhasil menanam sampai panen. Luar biasa!_ + CTA **Tanam Berikutnya** → ke `/app/plants`. Toast **Badge baru: Panen Pertama!** muncul. Status tanaman jadi **Panen**.
 > 4. Di `/app/quests` badge **Panen Pertama** harus terbuka.
 
 ---
@@ -272,10 +273,10 @@ npm run lint       # eslint
 npm run test       # vitest 23/23 hijau (gamifikasi, plant-engine, badge-evaluator)
 ```
 
-E2E (di laptop kamu; di env ini Playwright belum bisa launch karena `libnspr4.so` sistem belum ada):
+E2E (di WSL, bukan Windows native — Smart App Control memblokir Chromium unsigned):
 
 ```bash
-npx playwright install --with-deps chromium
+sudo npx playwright install --with-deps chromium   # butuh sudo; library sistem libnspr4/libnss3
 npm run test:e2e   # smoke: register → tambah Selada → centang task → progres + guard
 ```
 
@@ -286,9 +287,7 @@ npm run test:e2e   # smoke: register → tambah Selada → centang task → prog
 Copy-paste ini saat kamu menemukan bug:
 
 ```markdown
-**Langkah reproduksi:**
-1.
-2.
+**Langkah reproduksi:** 1. 2.
 
 **Akun:** baru / demo
 **Viewport:** 360px / desktop
@@ -301,9 +300,9 @@ Copy-paste ini saat kamu menemukan bug:
 
 ### Ringkasan akun
 
-| Jalur | Username | Password | Cara |
-|---|---|---|---|
-| **Akun baru** | terserah kamu (cth. `tifatest`) | ≥6 karakter (cth. `test1234`) | `/register` |
-| **Akun demo** | `demo` | `demo123` | Tombol **Coba akun demo** di `/login` atau isi manual di form |
+| Jalur         | Username                        | Password                      | Cara                                                          |
+| ------------- | ------------------------------- | ----------------------------- | ------------------------------------------------------------- |
+| **Akun baru** | terserah kamu (cth. `tifatest`) | ≥6 karakter (cth. `test1234`) | `/register`                                                   |
+| **Akun demo** | `demo`                          | `demo123`                     | Tombol **Coba akun demo** di `/login` atau isi manual di form |
 
 Selamat test! Kalau ada yang beda dari “Yang harus kamu lihat”, catat langkahnya pakai template di atas.
